@@ -1,0 +1,25 @@
+{
+  "name": "core-store-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sbongiseni88/core-store-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Sbongiseni88/core-store-api/issues"
+  },
+  "homepage": "https://github.com/Sbongiseni88/core-store-api#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

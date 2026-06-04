@@ -1,6 +1,6 @@
 import express from 'express';
 
-//1. create an isolated routern instance for products
+//1. create an isolated router instance for products
 const router = express.Router();
 
 //mock data array to act as temp database
@@ -40,10 +40,41 @@ router.get('/:id',(req,res)=>{
     }
     //if found return the data payload with 200 status 
     return res.status(200).json({
-        status:'succes',
+        status:'success',
         data:product
     });
 });
+//4. Define a route to create a new product
+router.post('/',(req,res)=>{
+    //extract raw fields out of the pre-parsed req.body object
+    const {name,price,brand}= req.body;
 
-//4. export router instance so the main app can mount it 
+    //guard clause validation - critical fields must be present before modifying our data
+    if (!name || !price || !brand){
+        return res.status(400).json({
+            status: 'fail',
+            message: 'Missing required fields. Please provide name, price, and brand'
+        });
+    }
+
+    //new domain model instance
+    const newProduct={
+        id: mockProducts.length + 1, //auto increment for mock data
+        name: name,
+        price: parseFloat(price),
+        brand:brand
+    };
+
+    //push new item into our server memory array
+    mockProducts.push(newProduct);
+
+    //return 201 Created status code along with new resource payload
+    return res.status(201).json({
+        status: 'success',
+        data: newProduct
+    })
+})
+
+
+// export router instance so the main app can mount it 
 export default router;

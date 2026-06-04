@@ -4,8 +4,11 @@ import productRouter from './routes/productRoutes.js'// because we used a defaul
 const app = express();
 const PORT = 3000;
 
+//Global middleware - parses incoming raw request strings nto clean JS objects on req.body
+app.use(express.json());
+
 //mount product router onto a specific path
-app.use('/api/vq/products',productRouter);
+app.use('/api/v1/products',productRouter);
 app.get('/api/v1/health',(req,res)=>{
     return res.status(200).json({status: 'healthy',
         timestamp: new Date().toISOString()

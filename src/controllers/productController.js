@@ -45,7 +45,7 @@ export const getProductById = (req,res)=>{
  */
 export const createProduct= (req,res)=>{
     //extract & deserialize request body with following fields
-    const {name,price,brand};
+    const {name,price,brand}= req.body;
 
     //guard clause vaidation - check if fields were not parsed in
     if (!price || !name || !brand){

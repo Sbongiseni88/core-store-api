@@ -1,5 +1,6 @@
 import express from 'express';
 import 'dotenv/config'
+import './config/database.js'; //execute, connect and verify tables at boot time
 import productRouter from './routes/productRoutes.js'// because we used a default export, we can name the import anything we want
 
 const app = express();
@@ -11,7 +12,8 @@ app.use(express.json());
 //mount product router onto a specific path
 app.use('/api/v1/products',productRouter);
 app.get('/api/v1/health',(req,res)=>{
-    return res.status(200).json({status: 'healthy',
+    return res.status(200).json({
+        status: 'healthy',
         enviroment: process.env.NODE_ENV || 'production',
         timestamp: new Date().toISOString()
     });
